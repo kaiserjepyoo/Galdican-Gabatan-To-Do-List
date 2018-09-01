@@ -1,0 +1,68 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title text-center>
+            Galdican-Gabatan TodoList App
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+  <ion-row>
+    <ion-item>
+        <ion-input [(ngModel)]="todo" placeholder="Todo" type="text"></ion-input>
+    </ion-item>
+    <ion-col>
+    <button *ngIf="!status" ion-button full (click)="add()">ADD</button>
+
+    <button *ngIf="status" ion-button full color="secondary" (click)="update()">Update</button>
+    </ion-col>
+    <ion-col *ngIf="status">
+    <button ion-button full color="danger" (click)="cancel()">Cancel</button></ion-col>
+  </ion-row>
+
+  <ion-row>
+     <ion-col>
+       <ion-list >
+           <ion-item-sliding *ngFor="let x of todos">
+            <ion-item>
+                <ion-label>{{x}}</ion-label>
+            </ion-item>
+
+            <ion-item-options side="right">
+                <button ion-button color="danger" (click)="delete(x)">
+                    <ion-icon name="trash"></ion-icon> Delete
+                </button>
+                <button ion-button color="primary" (click)="edit(x)">
+                    <ion-icon name="create"></ion-icon> Edit
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+        </ion-list>
+     </ion-col>
+  </ion-row>
+
+<ion-row>
+     <ion-col>
+       <ion-list >
+           <ion-item-sliding *ngFor="let c of completed">
+            <ion-item>
+                <ion-checkbox checked="true" (ionChange)="statuscancel(c)"></ion-checkbox>
+                <ion-label id="complete">{{c}}</ion-label>
+            </ion-item>
+
+            <ion-item-options side="right">
+                <button ion-button color="danger" (click)="deletecomplete(c)">
+                    <ion-icon name="trash"></ion-icon> Delete
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+        </ion-list>
+     </ion-col>
+  </ion-row>
+
+</ion-grid>
+   
+    
+    
+</ion-content>
